@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: upwork-autopilot
+    env: docker
+    region: oregon
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: CLAUDE_API_KEY
+        sync: false
+      - key: UPWORK_API_KEY
+        sync: false
+      - key: ENCRYPTION_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: PLAYWRIGHT_HEADLESS
+        value: "true"
+    healthCheckPath: /health
+    healthCheckTimeout: 30
+    memory: 1024
+    cpuKind: free

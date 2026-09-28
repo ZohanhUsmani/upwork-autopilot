@@ -57,6 +57,25 @@ export default function Analyze() {
         </button>
       </div>
 
+      <div className="analyze-info" style={{ marginTop: 16, background: '#1a1a26', border: '1px solid #2a2a3a', borderRadius: 8, padding: '12px 16px' }}>
+        <div className="analyze-info-item">
+          <span className="analyze-info-icon">📋</span>
+          <span><strong>Step 1:</strong> Paste the Upwork job URL, or skip it and paste the description directly</span>
+        </div>
+        <div className="analyze-info-item">
+          <span className="analyze-info-icon">🤖</span>
+          <span><strong>Step 2:</strong> Click <strong>Analyze Job</strong> — Claude reads the job and compares it to your profile</span>
+        </div>
+        <div className="analyze-info-item">
+          <span className="analyze-info-icon">📊</span>
+          <span><strong>Step 3:</strong> See your score (0-100), red flags, tips, and whether you should bid</span>
+        </div>
+        <div className="analyze-info-item">
+          <span className="analyze-info-icon">🚀</span>
+          <span><strong>Step 4:</strong> If the score is high, go to Proposals to generate and submit a proposal</span>
+        </div>
+      </div>
+
       <div className="grid-2" style={{ marginTop: 24 }}>
         {/* Input */}
         <div className="card">

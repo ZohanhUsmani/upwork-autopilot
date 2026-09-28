@@ -130,12 +130,295 @@
   background: #12121a;
 }
 
-/* Cards */
-.card {
+/* Auto-bidder banner */
+.autobid-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid;
+}
+
+.autobid-banner.running {
+  background: rgba(0, 184, 148, 0.08);
+  border-color: rgba(0, 184, 148, 0.3);
+}
+
+.autobid-banner.stopped {
+  background: rgba(225, 112, 85, 0.06);
+  border-color: rgba(225, 112, 85, 0.2);
+}
+
+.banner-icon {
+  flex-shrink: 0;
+}
+
+.autobid-banner.running .banner-icon {
+  color: #00b894;
+}
+
+.autobid-banner.stopped .banner-icon {
+  color: #e17055;
+}
+
+.banner-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.banner-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e0e0f0;
+}
+
+.banner-status {
+  font-size: 13px;
+  color: #8888a0;
+}
+
+.banner-buttons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.banner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+}
+
+.banner-btn:hover { transform: translateY(-1px); }
+
+/* Feature guide */
+.feature-guide {
   background: #1a1a26;
   border: 1px solid #2a2a3a;
   border-radius: 10px;
   padding: 20px;
+  margin-bottom: 20px;
+}
+
+.guide-header {
+  margin-bottom: 16px;
+}
+
+.guide-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e0e0f0;
+  margin: 0 0 4px 0;
+}
+
+.guide-sub {
+  font-size: 13px;
+  color: #5a5a75;
+  margin: 0;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.guide-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #242436;
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+}
+
+.guide-card-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.guide-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.guide-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e0e0f0;
+  margin: 0 0 4px 0;
+}
+
+.guide-card-desc {
+  font-size: 13px;
+  color: #8888a0;
+  line-height: 1.5;
+  margin: 0 0 6px 0;
+}
+
+.guide-card-note {
+  font-size: 12px;
+  color: #5a5a75;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Stat card */
+.stat-card {
+  background: #1a1a26;
+  border: 1px solid #2a2a3a;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: #e0e0f0;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #8888a0;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-note {
+  font-size: 11px;
+  color: #5a5a75;
+  margin-top: 2px;
+}
+
+/* Status bars */
+.status-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.status-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 180px;
+  flex-shrink: 0;
+}
+
+.status-bar-label {
+  font-size: 12px;
+  color: #5a5a75;
+}
+
+.bar-track {
+  flex: 1;
+  height: 8px;
+  background: #12121a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.bar-pending { background: linear-gradient(90deg, #fdcb6e, #f9a825); }
+.bar-approved { background: linear-gradient(90deg, #a29bfe, #6c5ce7); }
+.bar-improved { background: linear-gradient(90deg, #a29bfe, #6c5ce7); }
+.bar-submitted { background: linear-gradient(90deg, #00b894, #00a381); }
+.bar-discarded { background: linear-gradient(90deg, #e17055, #d63031); }
+
+.bar-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e0e0f0;
+  min-width: 24px;
+  text-align: right;
+}
+
+/* Activity list */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.activity-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 6px;
+  border-left: 3px solid #2a2a3a;
+}
+
+.activity-item .activity-badge-pending { border-left-color: #fdcb6e; }
+.activity-item .activity-badge-submitted { border-left-color: #00b894; }
+.activity-item .activity-badge-discarded { border-left-color: #e17055; }
+
+.activity-time {
+  font-size: 11px;
+  color: #5a5a75;
+}
+
+.activity-desc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #c8c8e0;
+}
+
+.activity-badge {
+  flex-shrink: 0;
+}
+
+.activity-text {
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .autobid-banner {
+    flex-wrap: wrap;
+  }
+  .banner-buttons {
+    width: 100%;
+  }
+  .banner-btn {
+    flex: 1;
+    justify-content: center;
+  }
+  .status-bar-row {
+    flex-wrap: wrap;
+  }
+  .status-bar-left {
+    min-width: 100%;
+  }
 }
 
 .card-header {

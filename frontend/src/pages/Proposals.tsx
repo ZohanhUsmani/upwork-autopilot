@@ -215,65 +215,67 @@ function ProposalCard({
       <div className="proposal-actions">
         {proposal.status === 'pending' && (
           <>
-            <button className="btn btn-success btn-sm" onClick={onApprove}>
-              ✓ Approve & Submit
-            </button>
-            <button className="btn btn-secondary btn-sm" onClick={onDiscard}>
-              Discard
-            </button>
+            <div className="action-hint">This proposal is drafted by the auto-bidder and waiting for you to review:</div>
+            <div className="action-buttons">
+              <button className="btn btn-success btn-sm" onClick={onApprove}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Approve & Submit
+              </button>
+              <button className="btn btn-secondary btn-sm" onClick={onDiscard}>
+                Discard
+              </button>
+            </div>
+            <div className="action-note">Click <strong>Approve & Submit</strong> to send this proposal to Upwork. Click <strong>Discard</strong> to delete it.</div>
           </>
         )}
 
         {proposal.status === 'approved' && (
           <>
-            <button
-              className="btn btn-success btn-sm"
-              onClick={onSubmit}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <><div className="spinner" style={{ width: 14, height: 14, borderWidth: 2 }}></div> Submitting...</>
-              ) : (
-                '🚀 Submit to Upwork'
-              )}
-            </button>
-            <button className="btn btn-secondary btn-sm" onClick={onDiscard}>
-              Discard
-            </button>
+            <div className="action-hint">You approved this proposal. Now submit it to Upwork when you're ready:</div>
+            <div className="action-buttons">
+              <button className="btn btn-success btn-sm" onClick={onSubmit} disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <><div className="spinner" style={{ width: 14, height: 14, borderWidth: 2 }}></div> Submitting...</>
+                ) : (
+                  <><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Submit to Upwork</>
+                )}
+              </button>
+              <button className="btn btn-secondary btn-sm" onClick={onDiscard}>
+                Discard
+              </button>
+            </div>
+            <div className="action-note"><strong>Submit to Upwork</strong> sends the proposal now. <strong>Discard</strong> cancels it.</div>
           </>
         )}
 
         {proposal.status === 'improved' && (
           <>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <input
-                className="input improve-input"
-                placeholder="What should be changed?"
-                value={improveText}
-                onChange={e => setImproveText(e.target.value)}
-              />
-              <button
-                className="btn btn-primary btn-sm"
-                onClick={() => {
-                  onImprove(improveText);
-                  setImproveText('');
-                }}
-                disabled={!improveText.trim()}
-              >
-                Improve
+            <div className="action-hint">You asked for changes. Tell Claude what to improve, then submit:</div>
+            <div className="action-buttons" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              <div style={{ display: 'flex', gap: 6, alignItems: 'center', flex: '1', minWidth: 200 }}>
+                <input
+                  className="input improve-input"
+                  placeholder="e.g. Make it shorter, sound more confident..."
+                  value={improveText}
+                  onChange={e => setImproveText(e.target.value)}
+                />
+                <button
+                  className="btn btn-primary btn-sm"
+                  onClick={() => { onImprove(improveText); setImproveText(''); }}
+                  disabled={!improveText.trim()}
+                >
+                  Improve
+                </button>
+              </div>
+              <button className="btn btn-success btn-sm" onClick={onSubmit} disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <><div className="spinner" style={{ width: 14, height: 14, borderWidth: 2 }}></div> Submitting...</>
+                ) : (
+                  <><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Submit to Upwork</>
+                )}
               </button>
             </div>
-            <button
-              className="btn btn-success btn-sm"
-              onClick={onSubmit}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <><div className="spinner" style={{ width: 14, height: 14, borderWidth: 2 }}></div> Submitting...</>
-              ) : (
-                '🚀 Submit to Upwork'
-              )}
-            </button>
+            <div className="action-note">Type what you want changed → click <strong>Improve</strong> → then click <strong>Submit to Upwork</strong>.</div>
           </>
         )}
 
@@ -282,12 +284,12 @@ function ProposalCard({
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00b894" strokeWidth="2">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            Submitted successfully
+            Submitted successfully to Upwork
           </div>
         )}
 
         {proposal.status === 'discarded' && (
-          <div className="discarded-badge">Discarded</div>
+          <div className="discarded-badge">Discarded — this proposal was deleted</div>
         )}
       </div>
     </div>

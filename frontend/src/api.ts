@@ -164,6 +164,16 @@ export const api = {
   listContracts: () => request<Record<string, unknown>>('/api/upwork/contracts'),
   getUpworkStats: () => request<Record<string, unknown>>('/api/upwork/stats'),
 
+  // Bulk scan
+  bulkScan: (jobCount: number) =>
+    request<{ jobs: any[]; total: number; high_rank_count: number; high_threshold: number }>('/api/bulk/scan', {
+      method: 'POST', body: JSON.stringify({ job_count: jobCount }),
+    }),
+  bulkGenerateDrafts: (jobCount: number) =>
+    request<{ drafts: any[]; total: number }>('/api/bulk/generate-drafts', {
+      method: 'POST', body: JSON.stringify({ job_count: jobCount }),
+    }),
+
   // Utility
   parseJobUrl: (jobUrl: string) => request<{ job_id: string | null; url: string; error?: string }>(`/api/job-url-parser?job_url=${encodeURIComponent(jobUrl)}`),
 };

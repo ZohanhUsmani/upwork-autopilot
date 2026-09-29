@@ -6,6 +6,7 @@ import Analyze from './pages/Analyze';
 import Proposals from './pages/Proposals';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
+import AutoScan from './pages/AutoScan';
 import './App.css';
 
 function NavBar() {
@@ -30,6 +31,7 @@ function NavBar() {
         <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => navigate('/')}>Dashboard</Link>
         <Link to="/analyze" className={`nav-link ${location.pathname === '/analyze' ? 'active' : ''}`} onClick={() => navigate('/analyze')}>Job Analyzer</Link>
         <Link to="/proposals" className={`nav-link ${location.pathname === '/proposals' ? 'active' : ''}`} onClick={() => navigate('/proposals')}>Proposals</Link>
+        <Link to="/autoscan" className={`nav-link ${location.pathname === '/autoscan' ? 'active' : ''}`} onClick={() => navigate('/autoscan')}>Auto-Scan</Link>
         <Link to="/profile" className={`nav-link ${location.pathname === '/profile' ? 'active' : ''}`} onClick={() => navigate('/profile')}>Profile</Link>
         <Link to="/settings" className={`nav-link ${location.pathname === '/settings' ? 'active' : ''}`} onClick={() => navigate('/settings')}>Settings</Link>
       </div>
@@ -68,6 +70,7 @@ export default function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/analyze" element={<Analyze />} />
           <Route path="/proposals" element={<Proposals />} />
+          <Route path="/autoscan" element={<AutoScan />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
